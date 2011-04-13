@@ -1,36 +1,29 @@
+var http = require("http");
+var bee = require("beeline");
 
-
-exports.create = function(settings) {
-    var handlers = [];
-    var filehandler = require("./FileHandler.js").create(settings.fileserver);
-    var http = require("http");
-    var urlmod = require("url");
-
-    function selectHandler(req, resp) {
-        var httpcode = null;
-        for (var x = 0; x < handlers.length; x++) {
-            if (handlers[x].can_handle(req)) {
-                httpcode = handlers[x].handle(req, resp);
-                break;
-            }            
-        }
-        if (httpcode == null)
-            httpcode = filehandler.handle(req, resp);
-            
-        console.log(req.method + " " + req.url + " RESPONSE:" + httpcode);
-    }
-    
-    return {
-        run: function() {
-            http.createServer(selectHandler).listen(settings.listen_port, settings.listen_ip);
-        },
-        
-        registerHandler: function(handler) {
-            handlers.append(handler);
-        },
-        
-        listen_ip: settings.listen_ip,
-        listen_port: settings.listen_port
+var settings = {
+    listen_ip: "0.0.0.0",
+    listen_port: 8081,
+    fileserver: {
+        wwwroot: "../wwwroot",
+        defaults: ["index.html"]
     }
 }
+    
+var router = bee.route({
+    "/api/": 
+
+
+});
+
+
+var s = http.createServer(mainHandler);
+s.listen(settings.listen_port, settings.listen_ip);
+require("elf-logger").createLogger(s, {
+    dir: "/home/trnqllt/programming/code/eco2/server/log"
+    , template: "{date}.log"
+    , fields: ["date", "time", "c-ip", "cs-username", "s-ip", "s-port", "cs-method", "cs-uri-stem", "cs-uri-query", "sc-status", "cs(User-Agent)"]
+});
+}
+
 
