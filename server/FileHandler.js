@@ -8,6 +8,10 @@ exports.create = function(settings) {
     // Defaults
     var defaultdata = "Not found";
     var defaultcode = 404;
+    
+    function findfile(pathname) {
+    
+    }
 
 
     return {
@@ -27,7 +31,7 @@ exports.create = function(settings) {
             if (fullpath.indexOf(settings.wwwroot) == 0)
             {
                 
-                data = "Ok to view " + req.url;
+                data = "Ok to view: " + urlinfo.pathname + " query: " + urlinfo.search;
                 code = 200;
             }
             

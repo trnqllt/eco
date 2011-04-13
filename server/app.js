@@ -1,8 +1,8 @@
 
 
 var settings = {
-    listen_ip: "0.0.0.0",
-    listen_port: 8081,
+    listen_ip: null,
+    listen_port: 9090,
     fileserver: {
         wwwroot: "../wwwroot",
         defaults: ["index.html"]
