@@ -17,7 +17,7 @@ exports.create = function(settings) {
         if (httpcode == null)
             httpcode = filehandler.handle(req, resp);
             
-        console.log(req.method + " " + req.url + " Responded:" + httpcode);
+        console.log(req.method + " " + req.url + " RESPONSE:" + httpcode);
     }
     
     return {
