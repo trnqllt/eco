@@ -1,6 +1,6 @@
 
 
-exports.duh = function(req, resp, matches) {
+exports.duh = function(req, resp) {
     resp.writeHeader(200);
     resp.end("API ok");
 }
