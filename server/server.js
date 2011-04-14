@@ -6,10 +6,10 @@ var api = require("./api");
 // Settings
 var settings = {
     listen_ip: "0.0.0.0",
-    listen_port: 8081,
+    listen_port: 9090,
     fileserver: {
-        wwwroot: "../wwwroot/",
-        defaults: ["index.html"]
+        wwwroot: "../wwwroot/"
+        , defaultpage: { name: "index.html", mime: "text/html" }
     }
 }
 
@@ -27,8 +27,8 @@ var mimes = {
 
 // Routing
 var router = bee.route({
-    "r`^/api/?.*$`": api.duh
-    , "/": bee.staticFileHandler(settings.fileserver.wwwroot + settings.fileserver.defaults[0], "text/html")
+    "r`^/api/(.+)$`": api.handleRequest
+    , "/": bee.staticFileHandler(settings.fileserver.wwwroot + settings.fileserver.defaultpage.name, settings.fileserver.defaultpage.mime)
     , "r`/(.*)`": bee.staticDirHandler(settings.fileserver.wwwroot, mimes)
 
 });
