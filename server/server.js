@@ -6,7 +6,7 @@ var api = require("./api");
 // Settings
 var settings = {
     listen_ip: "0.0.0.0",
-    listen_port: 9090,
+    listen_port: 9091,
     fileserver: {
         wwwroot: "../wwwroot/"
         , defaultpage: { name: "index.html", mime: "text/html" }

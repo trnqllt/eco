@@ -21,7 +21,6 @@ define(["jquery", "./client.ui.total", "./client.ui.expenses", "./client.ui.inco
             container.append(expdiv);
             expenses.init(expdiv);            
             
-            alert("init");
         }
         
     }
@@ -29,9 +28,11 @@ define(["jquery", "./client.ui.total", "./client.ui.expenses", "./client.ui.inco
     
     
     return {
-        init: function(selector) {
+        init: function(selector, data) {
             var cli = new Client(selector, total, expenses, income);
             cli.init();
+            
+            
         }
         
     }
