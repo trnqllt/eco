@@ -1,5 +1,6 @@
 // Imports
 var http = require("http");
+var path = require("path");
 var bee = require("beeline");
 var api = require("./api");
 
@@ -25,11 +26,15 @@ var mimes = {
 
 }
 
+
+var rootp = path.join(__dirname, settings.fileserver.wwwroot);
+var idxfile = path.join(rootp, settings.fileserver.defaultpage.name);
+
 // Routing
 var router = bee.route({
     "r`^/api/(.+)$`": api.handleRequest
-    , "/": bee.staticFileHandler(settings.fileserver.wwwroot + settings.fileserver.defaultpage.name, settings.fileserver.defaultpage.mime)
-    , "r`/(.*)`": bee.staticDirHandler(settings.fileserver.wwwroot, mimes)
+    , "/": bee.staticFileHandler(idxfile, settings.fileserver.defaultpage.mime)
+    , "r`/(.*)`": bee.staticDirHandler(rootp, mimes)
 
 });
 
