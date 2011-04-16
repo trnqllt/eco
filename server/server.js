@@ -16,13 +16,13 @@ var settings = {
 
 // Mime
 var mimes = {
-    "html": "text/html"
-    , "js": "text/javascript"
-    , "css": "text/stylesheet"
+    ".html": "text/html"
+    , ".js": "text/javascript"
+    , ".css": "text/css"
     
     // Images
-    , "gif": "image/gif", "png": "image/png"
-    , "jpg": "image/jpeg", "jpeg": "image/jpeg"
+    , ".gif": "image/gif", ".png": "image/png"
+    , ".jpg": "image/jpeg", ".jpeg": "image/jpeg"
 
 }
 
