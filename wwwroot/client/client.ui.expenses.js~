@@ -1,12 +1,12 @@
 define(['jquery', 'jquery-ui'], function ($) {
-    function Incomes() {
+    function Expenses() {
         var cont = null;
         var listeners = [];
         
         // Stuff
         function on_created(dto) {
             for (var x = 0; x < listeners.length; x++) {
-                listeners[x](dto);
+                window.setTimeout(function() { listeners[x](dto); }, 1);
             }
         }
         
@@ -17,13 +17,15 @@ define(['jquery', 'jquery-ui'], function ($) {
         
         this.render = function(container) {
             cont = container;
-            cont.html('Income!');
+            cont.html('Expenses!');
             
             var btn = $("<button>").button({ label: "Create" });
             cont.append(btn);
             btn.click(function() {
-                on_created("New income");
+                on_created("New expense");
             });
+            
+            
             
             return this;
         }
@@ -39,5 +41,5 @@ define(['jquery', 'jquery-ui'], function ($) {
     
     
     
-    return new Incomes();
+    return new Expenses();
 });

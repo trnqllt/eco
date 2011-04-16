@@ -1,16 +1,45 @@
-define(['jquery'], function ($) {
-    var pane = function(container) {
+define(['jquery', 'jquery-ui'], function ($) {
+    function Expenses() {
+        var cont = null;
+        var listeners = [];
         
-        this.render = function() {
-            container.html('Expenses!');
+        // Stuff
+        function on_created(dto) {
+            for (var x = 0; x < listeners.length; x++) {
+                listeners[x](dto);
+            }
+        }
+        
+        this.created = function(cb) {
+            listeners.push(cb);
+            return this;
+        }
+        
+        this.render = function(container) {
+            cont = container;
+            cont.html('Expenses!');
+            
+            var btn = $("<button>").button({ label: "Create" });
+            cont.append(btn);
+            btn.click(function() {
+                on_created("New expense");
+            });
+            
+            
+            
+            return this;
+        }
+        
+        this.update = function(dto) {
+            var div = $("<div>");
+            cont.append(div);
+            div.html(dto);
+            
+            return this;
         }
     }
     
     
     
-    return {
-        init: function(container) {
-            var p = new pane(container);
-            p.render();
-        }};
+    return new Expenses();
 });

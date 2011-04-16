@@ -6,7 +6,7 @@ define(['jquery', 'jquery-ui'], function ($) {
         // Stuff
         function on_created(dto) {
             for (var x = 0; x < listeners.length; x++) {
-                listeners[x](dto);
+                window.setTimeout(function() { listeners[x](dto); }, 1);
             }
         }
         

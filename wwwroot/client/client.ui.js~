@@ -29,7 +29,7 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             // --------- Footer
             var foot = $('<div>');
             foot.addClass("client-foot");
-            slide_cont.append(foot);
+            container.append(foot);
             
             var btn_prev = $('<button>').button({ label: "<--" }).click(slide_left);
             foot.append(btn_prev);

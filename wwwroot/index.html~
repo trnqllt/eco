@@ -20,39 +20,136 @@
 
 <div id="main-wrapper">
 
-    <div id="contents" style="clear: both;">
-    
-    
-    <div style="display: inline-block; width: 200px;">
-        <table style="border: 1px solid; width: 100%;">
-        <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
-        <tr><td>4000</td><td>1300</td><td>5300</td><td>4500</td></tr>
-        <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
-        <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
-        </table>
-    </div>
+    <div id="contents">
+        
+        <div class="client-head">
+            Upcoming <br />
+            <div style="color: red"><span style="color: red">!</span> 2011-04-20 Telia 2000:-</div>
+            <div><span style="color: red">!</span> 2011-04-22 Telia 2000:-</div>
+            <div>2011-04-29 Telia 2000:-</div>
+            <div>2011-04-29 Telia 2000:-</div>    
+        </div>
+        
+        <div class="client-slide-container">
+        
+            <div class="month 201102">
+                <h2>February 2011</h2>
+                <div>
+                    <table>
+                    <caption>Income</caption>
+                    <thead>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>4000</td><td>1300</td><td>5300</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td></tr>                        
+                    </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <table>
+                    <caption>Expenses</caption>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
+                    <tr><td>4000</td><td>1300</td><td>5300</td><td>4500</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
+                    </table>
+                </div>
+            </div>        
+        
+            <div class="month 201103">
+                <h2>March 2011</h2>
+                <div>
+                    <table>
+                    <caption>Income</caption>
+                    <thead>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>4000</td><td>1300</td><td>5300</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td></tr>                        
+                    </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <table>
+                    <caption>Expenses</caption>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
+                    <tr><td>4000</td><td>1300</td><td>5300</td><td>4500</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
+                    </table>
+                </div>
+            </div>
+            
+            <div class="month 201104">            
+                <h2>April 2011</h2>
+                <div>
+                    <table>
+                    <caption>Income</caption>
+                    <thead>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>4000</td><td>1300</td><td>5300</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td></tr>                        
+                    </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <table>
+                    <caption>Expenses</caption>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
+                    <tr><td>4000</td><td>1300</td><td>5300</td><td>4500</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
+                    </table>
+                </div>
+            </div>
+            
+            <div class="month 201105">            
+                <h2>May 2011</h2>
+                <div>
+                    <table>
+                    <caption>Income</caption>
+                    <thead>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>4000</td><td>1300</td><td>5300</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td></tr>                        
+                    </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <table>
+                    <caption>Expenses</caption>
+                    <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
+                    <tr><td>4000</td><td>1300</td><td>5300</td><td>4500</td></tr>
+                    <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
+                    <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
+                    </table>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
 
-    <div style="display: inline-block; width: 200px;">
-        <table style="border: 1px solid; width: 100%;">
-        <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
-        <tr><td>4000</td><td>800</td><td>4800</td><td>4800</td></tr>
-        <tr><td>344</td><td>1300</td><td>1644</td><td>344</td></tr>
-        <tr><td>5000</td><td>0</td><td>5000</td><td>5000</td></tr>                        
-        </table>
-    </div>
-
-    <div style="display: inline-block; width: 200px;">
-        <table style="border: 1px solid; width: 100%;">
-        <tr><th>Normal</th><th>Extra</th><th>Total</th><th>Paid</th></tr>
-        <tr><td>4000</td><td>0</td><td>4000</td><td></td></tr>
-        <tr><td>344</td><td>1300</td><td>1644</td><td></td></tr>
-        <tr><td>5000</td><td>0</td><td>5000</td><td></td></tr>                        
-        </table>
-    </div>
-
-    <div>
-    [Navigate back] [Navigate forward]
-    </div>
 
     </div>
 
@@ -62,19 +159,19 @@
 			<a href="http://validator.w3.org/check/referer"
 				title="Automatic validation for XHTML 1.0">
 				<img style="border:0;width:88px;height:31px"
-					src="http://www.w3.org/Icons/valid-xhtml10-blue"
+					src="images/w3c/valid-xhtml10-blue.png"
 					alt="Valid XHTML 1.0!" />
 			</a>
 			<a href="http://jigsaw.w3.org/css-validator/check/referer"
 				title="Automatic validation for CSS">
 				<img style="border:0;width:88px;height:31px"
-					src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+					src="images/w3c/vcss-blue.gif"
 					alt="Valid CSS!" />
 			</a>
 			<a href="http://www.w3.org/WAI/WCAG1A-Conformance"
 				title="Explanation of Level A Conformance">
 				<img style="border:0;width:88px;height:32px"
-					src="http://www.w3.org/WAI/wcag1A"
+					src="images/w3c/wcag1A.png"
 					alt="Level A conformance icon, W3C-WAI Web Content Accessibility Guidelines 1.0" />
 			</a>
 		</p>

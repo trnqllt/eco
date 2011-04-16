@@ -37,7 +37,7 @@ var router = bee.route({
 // Server
 var server = http.createServer(router);
 server.listen(settings.listen_port, settings.listen_ip);
-
+console.log("Server started, listening on " + settings.listen_ip + ":" + settings.listen_port);
 
 // W3C Logging
 require("elf-logger").createLogger(server, {

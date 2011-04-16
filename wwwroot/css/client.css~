@@ -19,7 +19,7 @@
 }
 
 .client-foot {
-    width:100px;
+    display: inline-block;
     margin: 0.4em auto;
 }
 
