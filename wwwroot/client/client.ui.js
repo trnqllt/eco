@@ -31,6 +31,14 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             foot.addClass("client-foot");
             slide_cont.append(foot);
             
+            // Navigation
+            var btn1 = $('<button>').button({ label: "<" })
+            btn1.css('height', '100%');
+            btn1.css('position','relative');
+            btn1.css('left', '0');
+            btn1.css('z-index', '500');
+            slide_cont.append(btn1);
+            
             var btn_prev = $('<button>').button({ label: "<--" }).click(slide_left);
             foot.append(btn_prev);
             var btn_next = $('<button>').button({ label: "-->" }).click(slide_right);
