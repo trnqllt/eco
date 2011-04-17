@@ -1,15 +1,19 @@
 define(['jquery', 'jquery-ui'], function ($) {
     function Balance() {
-        var cont = null;
+        var container_prov = null;
         
-        this.render = function(container) {
-            cont = container;
-            cont.html('Totals!');
+        this.init_container = function(container) {
+            container.html('Balance!');
             
             return this;
         }
         
         this.update = function(dto) {
+            if (container_prov == null) {
+                throw new Error("Tried to update balance before a container provider has been set!");
+            }
+            
+            var cont = container_prov(dto.month);            
             var div = $("<div>");
             cont.append(div);
             div.html(dto);

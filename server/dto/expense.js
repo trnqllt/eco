@@ -2,13 +2,13 @@
 var ExpenseDTO = {
     id: null
     , month: null
-    , name: null
+    , label: null
+    , group: null
     , type: null // Bill, Planned, Recurring, Single etc..
     , due_date: null
-    , normal_sum: null
-    , paid_sum: null
-    , extra_sum: null
-    , total: null
+    , normal_amount: null
+    , paid_amount: null
+    , extra_amount: null
     , recurring: 0 // Month-wise
     , locked: false;
 }

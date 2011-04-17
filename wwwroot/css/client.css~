@@ -13,6 +13,9 @@
     background-color: #fafafa;
     overflow: hidden;
 }
+.client-slide-head {
+    
+}
 .client-slider {
     position: relative;
     width: 200em;
@@ -20,8 +23,6 @@
 }
 
 .client-foot {
-    width:100px;
-    margin: 0.4em auto;
 }
 
 .month {
@@ -39,15 +40,19 @@
 }
 
 .month > div {
-    width: 20em;
+    width: 30em;
     margin: 1em 0;
 }
 
 .month > h2 {
-    text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff;
+
 }
 
-.month > div table {
+.month > div.client-income-container table {
+    width: 70%;
+}
+
+.month > div.client-expense-container table {
     width: 100%;
 }
 
@@ -56,8 +61,13 @@
     font-size: 1.2em;
 }
 
-.month > div table th {
+.month > div table th, .month > div table td {
     text-align: left;
+    white-space: nowrap;
+}
+
+.month > div table td > input {
+
 }
 
 

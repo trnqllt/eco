@@ -51,11 +51,16 @@ define(["jquery"], function ($) {
             return this;
         }
         
-        this.update_incomes = function(month) {
+        this.update_incomes = function(month, completed_cb) {
+            for (var x = 0; x < (Math.random()*9)+1; x++) {
+                on_income_updated({month: month, label: "bajs "+x});
+            }
             
-            
+            if (completed_cb)
+                completed_cb();
             return this;
         }
+        
         
         // Expense
         this.save_expense = function(dto) {
@@ -64,11 +69,16 @@ define(["jquery"], function ($) {
             return this;
         }
         
-        this.update_expenses = function(month) {
+        this.update_expenses = function(month, completed_cb) {
+            for (var x = 0; x < (Math.random()*9)+1; x++) {
+                on_expense_updated({month: month, title: "bajs"+x});
+            }
             
-            
+            if (completed_cb)
+                completed_cb();
             return this;
         }
+        
         
         // Balance
         this.update_balance = function(month) {

@@ -2,9 +2,10 @@
 var IncomeDTO = {
     id: null
     , month: null
-    , name: null
+    , label: null
+    , group: null
     , type: null // Recurring, Temporary
-    , sum: null
+    , amount: null
     , recurring: 0 // Month-wise
     , locked: false;
 }

@@ -1,16 +1,13 @@
 define(['jquery', 'jquery-ui'], function ($) {
-    function Expenses() {
+
+    function PaneTable() {
         var cont = null;
         var listeners = [];
         var container_prov = null;
         
-        var fields = [
-            ['Label', 'label', 0]
-            , ['Due date', 'due_date', 10]
-            , ['Amount', 'normal_amount', 5]
-            , ['Extra', 'extra_amount', 5]
-            , ['Paid', 'paid_amount', 5]
-        ];
+        this._table_caption = "PaneTable";
+        this._button_label = "Create new";
+        this._fields = [];
         
         // Stuff
         function on_created(dto) {
@@ -34,7 +31,7 @@ define(['jquery', 'jquery-ui'], function ($) {
 
             var cap = $('<caption>');
             tbl.append(cap);
-            cap.text("Expenses");
+            cap.text(this._table_caption);
             
             var tblhead = $('<thead>');
             tbl.append(tblhead);
@@ -42,10 +39,10 @@ define(['jquery', 'jquery-ui'], function ($) {
             tblhead.append(tr);
 
             
-            for (var x = 0; x < fields.length; x++) {
+            for (var x = 0; x < this._fields.length; x++) {
                 var th = $('<th>');
                 tr.append(th);
-                th.text(fields[x][0]);
+                th.text(this._fields[x][0]);
             }
             
             var tblbody = $('<tbody>');
@@ -53,34 +50,32 @@ define(['jquery', 'jquery-ui'], function ($) {
             
             container.append(tbl);
             
-            var btn = $("<button>").button({ label: "Create" });
+            var btn = $("<button>").button({ label:this._button_label });
             container.append(btn);
-            btn.click(function() {
-                on_created({
-                    month: month
-                    , label: "New expense"
-                });
-            });
+            btn.click(this.create_new);
             
             return this;
         }
         
+        this.create_new = function() {
+            throw new Error("create_new _must_ be overridden by subclasses");
+        }
+        
         this.update = function(dto) {
             if (container_prov == null) {
-                throw new Error("Tried to update expense before a container provider has been set!");
+                throw new Error("Tried to run update(dto) before a container provider has been set!");
             }
             
             var cont = container_prov(dto.month);            
             var tbody = $('tbody', cont);
-            console.log(tbody.length);
                         
             var tr = $('<tr>');
-            
-            for (var x = 0; x < fields.length; x++) {
+
+            for (var x = 0; x < this._fields.length; x++) {
                 var td = $('<td>');
                 tr.append(td);
-                var val = dto[fields[x][1]];
-                var w = fields[x][2];
+                var val = dto[this._fields[x][1]];
+                var w = this._fields[x][2];
                 
                 if (!dto.locked) {
                     var inpt = $('<input>');
@@ -105,5 +100,6 @@ define(['jquery', 'jquery-ui'], function ($) {
     
     
     
-    return new Expenses();
+    return PaneTable;
 });
+
