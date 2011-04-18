@@ -61,6 +61,10 @@ define(['jquery', 'jquery-ui'], function ($) {
             throw new Error("create_new _must_ be overridden by subclasses");
         }
         
+        this.build_link = function(dto, field) {
+            throw new Error("build_link _must_ be overridden by subclasses");
+        }
+        
         this.update = function(dto) {
             if (container_prov == null) {
                 throw new Error("Tried to run update(dto) before a container provider has been set!");
@@ -74,8 +78,16 @@ define(['jquery', 'jquery-ui'], function ($) {
             for (var x = 0; x < this._fields.length; x++) {
                 var td = $('<td>');
                 tr.append(td);
-                var val = dto[this._fields[x][1]];
-                var w = this._fields[x][2];
+                var field = this._fields[x];
+                var val = dto[field[1]];
+                var w = field[2];
+                var make_link = field[3];
+                
+                
+                if (make_link) {
+                    var url = this.build_link(dto, field);
+                    // Skapa klickbar länk för att visa/ändra mer info, typ OCR etc etc...
+                }
                 
                 if (!dto.locked) {
                     var inpt = $('<input>');

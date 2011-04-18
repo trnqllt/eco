@@ -10,7 +10,8 @@ var ExpenseDTO = {
     , paid_amount: null
     , extra_amount: null
     , recurring: 0 // Month-wise
-    , locked: false;
+    , locked: false
+    , data: { } // Different depending on type
 }
 
 exports.Create = function(vals) {

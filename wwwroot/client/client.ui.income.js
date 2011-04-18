@@ -6,7 +6,7 @@ define(['./client.ui.panetable'], function (PaneTable) {
         this._table_caption = "Income";
         this._button_label = "Create new";
         this._fields = [
-            ['Label', 'label', 0]
+            ['Label', 'label', 0, true]
         ];
         return this;
     }

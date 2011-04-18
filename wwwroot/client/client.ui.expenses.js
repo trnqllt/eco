@@ -5,11 +5,11 @@ define(['jquery', 'jquery-ui'], function ($) {
         var container_prov = null;
         
         var fields = [
-            ['Label', 'label', 0]
-            , ['Due date', 'due_date', 10]
-            , ['Amount', 'normal_amount', 5]
-            , ['Extra', 'extra_amount', 5]
-            , ['Paid', 'paid_amount', 5]
+            ['Label', 'label', 0, true]
+            , ['Due date', 'due_date', 10, false]
+            , ['Amount', 'normal_amount', 5, false]
+            , ['Extra', 'extra_amount', 5, false]
+            , ['Paid', 'paid_amount', 5, false]
         ];
         
         // Stuff
