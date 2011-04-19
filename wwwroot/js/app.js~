@@ -3,8 +3,10 @@ require({ priority: ["jquery"]});
 
 require(['jquery', './client/client.data.js', './client/client.ui.js'], function($, data, ui) {
     // Wait until the document is loaded before drawing anything
+    alert("h3j");
     $(document).ready(function() {        
-        ui.init('#head', '#foot', '#scrolling-container', data);    
+                alert("init");
+        ui.init('#contents', data);    
     });
 });
 

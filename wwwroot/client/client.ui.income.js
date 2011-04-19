@@ -1,8 +1,8 @@
 define(['./client.ui.panetable'], function (PaneTable) {
 
-    Income = {};
+    function Income() {};
     Income.prototype = new PaneTable();
-    Income.init = function() {
+    Income.prototype.init = function() {
         this._table_caption = "Income";
         this._button_label = "Create new";
         this._fields = [
@@ -11,20 +11,13 @@ define(['./client.ui.panetable'], function (PaneTable) {
         return this;
     }
     
+    Income.prototype.build_link = function(dto, field) {
+        return "aplänk";
+    }
     
-    
-    
-    
-    
-    
-    nepps...funkar inte...
-    
-    
-    
-    
-    
-    
-    
+    Income.prototype.create_new = function(month) {
+        alert("Should create new @ " + month);
+    }    
     
     return new Income().init();
 

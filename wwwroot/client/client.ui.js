@@ -8,7 +8,7 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
         var init_count = 0;
         
         this.init = function(data) {
-            
+
             container.addClass('client-container');
             
             // Create and add client-scrolling-container etc
@@ -199,18 +199,18 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
         
         
         function connect(data) {
-            // Bind from data
-            data.income_updated(income.update);            
-            data.expense_updated(expenses.update);
-            data.balance_updated(balance.update);
-            
             // Bind to elements
             income.request_container(get_income_container);
             expenses.request_container(get_expense_container);
             
+            // Bind from data
+            data.income_updated(function(dto) { income.update(dto) });            
+            data.expense_updated(function(dto) { expenses.update(dto) });
+            data.balance_updated(function(dto) { balance.update(dto) });
+            
             // Bind from view
-            income.created(data.save_income);
-            expenses.created(data.save_expense);
+            income.created(function(dto) { data.save_income(dto) });
+            expenses.created(function(dto) { data.save_expense(dto) });
             
         }
         
