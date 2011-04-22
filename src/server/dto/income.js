@@ -5,7 +5,8 @@ var IncomeDTO = {
     , label: null
     , group: null
     , type: null // Recurring, Temporary
-    , amount: null
+    , normal_amount: null
+    , extra_amount: null
     , recurring: 0 // Month-wise
     , locked: false
     , data: { } // Different depending on type

@@ -38,15 +38,11 @@ define(['jquery', 'jquery-ui'], function ($) {
         var tr = $('<tr>');
         tblhead.append(tr);
 
-        
         for (var x = 0; x < this._fields.length; x++) {
             var th = $('<th>');
             tr.append(th);
             th.text(this._fields[x][0]);
         }
-        
-        var tblbody = $('<tbody>');
-        tbl.append(tblbody);
         
         container.append(tbl);
         
@@ -71,8 +67,61 @@ define(['jquery', 'jquery-ui'], function ($) {
             throw new Error("Tried to run update(dto) before a container provider has been set!");
         }
         
-        var cont = this._container_prov(dto.month);            
-        var tbody = $('tbody', cont);
+        var cont = this._container_prov(dto.month);
+        var tabl = $('table', cont);
+        
+        var groupname = dto.group;
+        if (groupname)
+            groupname = groupname.replace(' ', '')
+        
+        var sel = 'tbody';
+        if (groupname) // Fetch an existing named group
+            sel += '.client-group-' + groupname;
+        else // Fetch the (existing?) unnamed group
+            sel += ':not([class*="client-group-"])'
+            
+        var tbody = $(sel, tabl);
+
+        if (tbody.length == 0) {
+            tbody = $('<tbody>');
+            tbody.addClass('client-group');
+            
+            if (dto.group) {                
+                tbody.addClass('client-group-' + groupname);
+                
+                var grphead = $('<tr>');
+                var grpcap = $('<th>');
+                grpcap.addClass('client-group-head');
+                grpcap.attr('colspan', this._fields.length);
+                grpcap.text(dto.group);
+                
+                grphead.append(grpcap);
+                tbody.append(grphead);    
+                tabl.append(tbody);
+            } else {
+            
+            
+            
+                var grphead = $('<tr>');
+                var grpcap = $('<th>');
+                grpcap.addClass('client-group-head');
+                grpcap.attr('colspan', this._fields.length);
+                grpcap.text('noname');
+                
+                grphead.append(grpcap);
+                tbody.append(grphead);  
+            
+            
+            
+            
+                var tbodies = $('tbody:first', tabl);
+                if (tbodies.length == 0) {
+                    tabl.append(tbody);
+                } else {
+                    tbodies.before(tbody);
+                }
+            }
+        }
                     
         var tr = $('<tr>');
 

@@ -1,0 +1,16 @@
+/* Reset */
+html, body, div, table, caption, thead, tbody, tfoot, tr, th, td { border: 0; margin: 0; padding: 0 }
+table { border-spacing: 0; }
+html { font-size: 62.5%; }
+
+
+/* Defaults */
+body {
+    font-size: 1.4em;
+    font-family: Arial;
+    }
+#main-wrapper {  }
+
+table td, table tr { padding: 0.2em; }
+
+

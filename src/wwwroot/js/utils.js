@@ -19,10 +19,24 @@ define([], function() {
         }
     }
     
+    var Monetary =  {
+        format_money: function(amount) {
+            var retval = "<span"
+            
+            if (amount < 0) {
+                retval += " class=\"negative\"";
+            }
+            retval += ">" + amount + " kr</span>";
+            
+            return retval;
+        }
+    
+    }
     
     
     return {
         DateUtils: DateUtils
+        , Monetary: Monetary
     }
     
 });

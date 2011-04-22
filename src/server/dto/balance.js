@@ -4,7 +4,11 @@ var BalanceDTO = {
     , normal_income: null
     , extra_income: null
     , actual_income: null
-    , normal_expenses
+    , normal_expenses: null
+    , extra_expenses: null
+    , actual_expenses: null
+    , normal_balance: null
+    , actual_balance: null
 }
 
 

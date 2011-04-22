@@ -37,11 +37,12 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             
             // How many initialization calls?
             var initmonths = [monthadd(null, 0), monthadd(null, -1), monthadd(null, -2)];            
-            init_count = initmonths.length *2;
+            init_count = initmonths.length *3;
             for (var x = 0; x < initmonths.length; x++) {
                 console.log("Initializing " + initmonths[x]);
                 data.update_incomes(initmonths[x], init_completed);
                 data.update_expenses(initmonths[x], init_completed);
+                data.update_balance(initmonths[x], init_completed);
             }
             
         }
@@ -82,11 +83,18 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             mdiv.append(h2);
             h2.text(format_month(month));
             
+            // Container for balance
+            var baldiv = $('<div>');
+            baldiv.addClass('client-balance-container');
+            balance.init_container(baldiv, month);
+            mdiv.append(baldiv);
+            
             // Container for income
             var incdiv = $('<div>');
             incdiv.addClass('client-income-container');
             income.init_container(incdiv, month);
             mdiv.append(incdiv);
+            
             // Container for expenses
             var expdiv = $('<div>');
             expdiv.addClass('client-expense-container');
@@ -105,6 +113,14 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             }
             
             return mdiv;
+        }
+        
+        function get_balance_container(month, dont_autocreate) {
+            var mdiv = get_month_container(month, dont_autocreate);
+            if (mdiv == null)
+                return null;
+            else
+                return $('.client-balance-container', mdiv);
         }
         
         function get_income_container(month, dont_autocreate) {
@@ -202,6 +218,7 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             // Bind to elements
             income.request_container(get_income_container);
             expenses.request_container(get_expense_container);
+            balance.request_container(get_balance_container);            
             
             // Bind from data
             data.income_updated(function(dto) { income.update(dto) });            
@@ -209,8 +226,8 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             data.balance_updated(function(dto) { balance.update(dto) });
             
             // Bind from view
-            income.created(data.save_income);
-            expenses.created(data.save_expense);
+            income.created(function(dto) { data.save_income(dto) });
+            expenses.created(function(dto) { data.save_expense(dto) });
             
         }
         
