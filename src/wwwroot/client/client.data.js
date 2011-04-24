@@ -1,48 +1,93 @@
 define(["jquery"], function ($) {
 
     function Data(baseurl) {
-        var income_callbacks = [];
-        var expense_callbacks = [];
-        var balance_callbacks = [];
+        var cbs = {
+        	income: []
+        	, expenses: []
+        	, d2dexpenses: []
+        	, balance: []
+        }
+        var urls = {
+        	income: baseurl + "income/"
+        	, expenses: baseurl + "expense/"
+        	, d2dexpenses: baseurl + "d2dexpense/"
+        	, balance: baseurl + "balance/"
+        }
         
         // Events
+        this.d2dexpense_updated = function(cb) {
+            cbs.d2dexpenses.push(cb);
+            return this;
+        }
+        
         this.income_updated = function(cb) {
-            income_callbacks.push(cb);
+            cbs.income.push(cb);
             return this;
         }
 
         this.expense_updated = function(cb) {
-            expense_callbacks.push(cb);
+            cbs.expenses.push(cb);
             return this;
         }
 
         this.balance_updated = function(cb) {
-            balance_callbacks.push(cb);
+            cbs.balance.push(cb);
             return this;
         }
         
         // Stuff
+        function on_d2dexpense_updated(dto) {
+            for (var x = 0; x < cbs.d2dexpenses.length; x++) {
+                cbs.d2dexpenses[x](dto);
+            }
+        }
+        
         function on_income_updated(dto) {
-            for (var x = 0; x < income_callbacks.length; x++) {
-                income_callbacks[x](dto);
+            for (var x = 0; x < cbs.income.length; x++) {
+                cbs.income[x](dto);
             }
         }
         
         function on_expense_updated(dto) {
-            for (var x = 0; x < expense_callbacks.length; x++) {
-                expense_callbacks[x](dto);
+            for (var x = 0; x < cbs.expenses.length; x++) {
+                cbs.expenses[x](dto);
             }
         }
         
         function on_balance_updated(dto) {
-            for (var x = 0; x < balance_callbacks.length; x++) {
-                balance_callbacks[x](dto);
+            for (var x = 0; x < cbs.balance.length; x++) {
+                cbs.balance[x](dto);
             }
         }
         
         // Internals
         
         
+        
+        // day-to-day expenses
+        this.save_d2dexpense = function(dto) {
+            on_d2dexpense_updated(dto);
+            
+            return this;
+        }
+        
+        this.update_d2dexpenses = function(month, completed_cb) {
+        	var requrl = urls.d2dexpenses;
+        	
+        	$.ajax({
+        		url: requrl
+        		, type: "GET"
+        		//, dataType: "json"
+        		, success: function(data, textStatus, xhr) {
+        			for (var x = 0; x < data.length; x++) {
+        				on_d2dexpense_updated(data[x]);
+        			}
+        		}
+        		, complete: completed_cb
+        	});
+        	
+            return this;
+        }
         
         // Income
         this.save_income = function(dto) {

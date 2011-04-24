@@ -1,0 +1,119 @@
+
+
+var Api = function() {
+    // Utilities
+    function split_path(path) {
+        var ret = { module: null, params: [] };
+        var parts = path.split("/");
+        if (parts[0].length > 0) {
+            ret.module = parts[0];
+            ret.params = parts.slice(1);
+            if (ret.params.length > 0 && ret.params[ret.params.length-1].length == 0) {
+                ret.params.pop();
+            }
+        }
+        return ret;
+    }
+    
+    function send_invalid_method(resp, module) {
+        var valid_methods = [];
+        
+        if (typeof module["do_get"] === "function")
+            valid_methods.append("GET");
+        if (typeof module["do_post"] === "function")
+            valid_methods.append("POST");
+        if (typeof module["do_put"] === "function")
+            valid_methods.append("PUT");
+        if (typeof module["do_delete"] === "function")
+            valid_methods.append("DELETE");        
+        
+        resp.writeHeader(405, {
+            "Allow": valid_methods.join(", ")
+        });
+        resp.end();
+    }
+    
+    function send_invalid_path(resp) {
+        resp.writeHeader(404);
+        resp.end();
+    }
+    
+    function send_error(resp, errobj) {
+        resp.writeHeader(500);
+        resp.end("Internal server error");
+        console.error("An error occured:");
+        console.error(errobj);
+        throw errobj;
+    }
+    
+    function get_req_nfo(path, cb) {
+        var req_nfo = { handler: null, params: null };
+        var nfo = split_path(path);        
+        switch (nfo.module) {
+            case "income":
+                req_nfo.handler = require("./api/income.js").handler;
+                break;
+        
+            case "expense":
+                req_nfo.handler = require("./api/expense.js").handler;
+                break;
+                
+            case "balance":
+                req_nfo.handler = require("./api/balance.js").handler;
+                break;
+        }
+        
+        if (!req_nfo.handler)
+            req_nfo.params = nfo.params;
+        
+        console.log("Fetched handler " + nfo.handler);
+        cb(req_nfo);
+    }
+    
+    return {
+        "any": function(req, resp, matches) {            
+            try {
+                get_req_nfo(matches[0], function(req_nfo) {                    
+                    if (req_nfo.handler === null) {
+                        send_invalid_path(resp);
+                        return;
+                    }
+                    
+                    console.log("Searching for function " + "do_" + req.method.toLowerCase() + " on handler:");
+                    console.log(req_nfo.handler);
+                    var func = req_nfo.handler["do_" + req.method.toLowerCase()];
+                    console.log(func);
+                    if (typeof func !== "function") {
+                        send_invalid_method(resp, req_nfo.handler);
+                        return;
+                    }
+                    
+                    req_nfo.handler.on("begin", function(success) {
+                        if (success) {
+                            resp.writeHeader(200);
+                        }
+                        else {
+                            resp.end(404);
+                        }
+                    });
+                    
+                    req_nfo.handler.on("end", function() { resp.end(); });
+                    
+                    req_nfo.handler.on("write_response", function(responsedata) {
+                        resp.write(responsedata);
+                    });
+                    
+                    console.log("Executing " + req.method + ", params: " + req_nfo.params);
+                    func(req_nfo.params);
+                    
+                    
+                });
+            }
+            catch (err) {
+                send_error(resp, err);
+            }
+        }
+    }
+}
+
+exports.handleRequest = Api();

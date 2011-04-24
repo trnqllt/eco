@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename JavaScript file &apos;client.ui.account.js&apos; to &apos;client.ui.daytoday.js&apos;&#x0A;- Original project: &apos;src&apos;&#x0A;- Original element: &apos;client.ui.account.js&apos;&#x0A;- Renamed element: &apos;client.ui.daytoday.js&apos;" description="Rename JavaScript file &apos;client.ui.account.js&apos;" flags="2" id="org.eclipse.wst.jsdt.ui.rename.compilationunit" input="/wwwroot\/client&lt;{client.ui.account.js" name="client.ui.daytoday.js" references="false" stamp="1303514287750" version="1.0"/>
+</session>

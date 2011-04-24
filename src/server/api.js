@@ -6,7 +6,7 @@ var Api = function() {
         var ret = { module: null, params: [] };
         var parts = path.split("/");
         if (parts[0].length > 0) {
-            ret.module = parts[0];
+            ret.module = parts[0].replace(/\/$/, "$`");
             ret.params = parts.slice(1);
             if (ret.params.length > 0 && ret.params[ret.params.length-1].length == 0) {
                 ret.params.pop();
@@ -58,31 +58,37 @@ var Api = function() {
                 req_nfo.handler = require("./api/expense.js").handler;
                 break;
                 
+            case "d2dexpense":
+                req_nfo.handler = require("./api/d2dexpense.js").handler;
+                break;
+                
             case "balance":
                 req_nfo.handler = require("./api/balance.js").handler;
                 break;
+            
+            default:
+            	console.log("Unknown module: " + nfo.module);
         }
         
-        if (!req_nfo.handler)
+        if (req_nfo.handler) {
+        	console.log("Found module: " + nfo.module);
             req_nfo.params = nfo.params;
+        }
         
-        console.log("Fetched handler " + nfo.handler);
         cb(req_nfo);
     }
     
     return {
         "any": function(req, resp, matches) {            
             try {
+            	console.log("Searching for handler for: " + matches[0]);
                 get_req_nfo(matches[0], function(req_nfo) {                    
                     if (req_nfo.handler === null) {
                         send_invalid_path(resp);
                         return;
                     }
                     
-                    console.log("Searching for function " + "do_" + req.method.toLowerCase() + " on handler:");
-                    console.log(req_nfo.handler);
                     var func = req_nfo.handler["do_" + req.method.toLowerCase()];
-                    console.log(func);
                     if (typeof func !== "function") {
                         send_invalid_method(resp, req_nfo.handler);
                         return;
@@ -103,8 +109,8 @@ var Api = function() {
                         resp.write(responsedata);
                     });
                     
-                    console.log("Executing " + req.method + ", params: " + req_nfo.params);
-                    func(req_nfo.params);
+                    //console.log("Executing " + req.method + ", params: " + req_nfo.params);
+                    func.call(req_nfo.handler, req_nfo.params);
                     
                     
                 });

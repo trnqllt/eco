@@ -1,0 +1,2 @@
+INDEX VERSION 1.121+/home/trnqllt/programming/code/eco2/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1175494123.index

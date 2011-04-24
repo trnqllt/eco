@@ -3,7 +3,7 @@ define(['./client.ui.panetable'], function (PaneTable) {
     function Expenses() {};
     Expenses.prototype = new PaneTable();
     Expenses.prototype.init = function() {
-        this._table_caption = "Expenses";
+        this._table_caption = "Montly expenses";
         this._button_label = "Create new";
         this._fields = [
             ['Label', 'label', 0, true]

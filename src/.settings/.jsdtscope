@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="api/|dto/" kind="src" path="server"/>
+	<classpathentry kind="src" path="server/api"/>
+	<classpathentry kind="src" path="server/dto"/>
+	<classpathentry kind="src" path="wwwroot/client"/>
+	<classpathentry kind="src" path="wwwroot/js"/>
+	<classpathentry including="*.js" kind="src" path="node"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+</classpath>

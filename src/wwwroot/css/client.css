@@ -22,8 +22,26 @@
     overflow: hidden;
 }
 
+.client-head {
+}
+
 .client-foot {
 }
+
+/*** Account status ***/
+.client-account {
+	width: 30em;
+	margin: 0 auto;
+	padding: 1em;
+	background-color: #eee;
+    border-radius: 1em;
+    border: 4px double black;
+}
+
+
+
+/*** End Account status ***/
+
 
 .month {
     background-color: #eee;

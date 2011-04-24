@@ -1,7 +1,8 @@
-define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.income", '../js/utils', 'jquery-ui'], function($, balance, expenses, income, utils) {
+define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.income", "./client.ui.daytoday", '../js/utils', 'jquery-ui'], function($, balance, expenses, income, d2d, utils) {
     
     var Client = function(selector, balance, expenses, income) {
         var container = $(selector);
+        var head = null;
         var slide_cont = null;
         var slider = null;
         var curmonth = null;
@@ -12,9 +13,33 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             container.addClass('client-container');
             
             // Create and add client-scrolling-container etc
+            head = $('<div>');
+            head.addClass("client-head");
+            var acc = $('<div>');
+            acc.addClass('client-account');
+            var acchead = $('<h2>');
+            acchead.text('Account status');
+            acc.append(acchead);
+            
+            var accm = $('<div>');
+            accm.text(new Date().toString());
+            acc.append(accm);
+            
+            var acct = $('<table>');
+            acc.append(acct);
+            var accthead = $('<thead>');
+            acct.append(accthead);
+            accthead.append('<tr><th>Account</th><th>Amount</th></tr>');
+            var acctbody = $('<tbody>');
+            acct.append(acctbody);
+            acctbody.append('<tr><td>Robert - Visa</td><td>22 000 kr</td></tr>');
+            
+            head.append(acc);
+            
+            
             slide_cont = $('<div>');
             slide_cont.addClass('client-slide-container');
-            container.append(slide_cont);
+            
             
             var slide_head = $('<div>');
             slide_head.addClass('client-slide-head');
@@ -32,17 +57,21 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             var btn_next = $('<button>').button({ label: "-->" }).click(slide_right);
             slide_head.append(btn_next);
 
+            container.append(head);
+            container.append(slide_cont);
+            
             // Bind all
             connect(data);
             
             // How many initialization calls?
             var initmonths = [monthadd(null, 0), monthadd(null, -1), monthadd(null, -2)];            
-            init_count = initmonths.length *3;
+            init_count = initmonths.length *4;
             for (var x = 0; x < initmonths.length; x++) {
                 console.log("Initializing " + initmonths[x]);
                 data.update_incomes(initmonths[x], init_completed);
                 data.update_expenses(initmonths[x], init_completed);
                 data.update_balance(initmonths[x], init_completed);
+                data.update_d2dexpenses(initmonths[x], init_completed);
             }
             
         }
@@ -100,6 +129,12 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             expdiv.addClass('client-expense-container');
             expenses.init_container(expdiv, month);
             mdiv.append(expdiv);
+
+            // Container for day-to-day expenses
+            var d2dexpdiv = $('<div>');
+            d2dexpdiv.addClass('client-d2dexpense-container');
+            d2d.init_container(d2dexpdiv, month);
+            mdiv.append(d2dexpdiv);            
             
             // Where should we add this new month?
             var mnext = get_month_container(monthadd(month, 1), true);
@@ -129,6 +164,14 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
                 return null;
             else
                 return $('.client-income-container', mdiv);
+        }
+        
+        function get_d2d_container(month, dont_autocreate) {
+            var mdiv = get_month_container(month, dont_autocreate);
+            if (mdiv == null)
+                return null;
+            else
+                return $('.client-d2dexpense-container', mdiv);
         }
         
         function get_expense_container(month, dont_autocreate) {
@@ -218,16 +261,19 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
             // Bind to elements
             income.request_container(get_income_container);
             expenses.request_container(get_expense_container);
-            balance.request_container(get_balance_container);            
+            balance.request_container(get_balance_container);
+            d2d.request_container(get_d2d_container);        
             
             // Bind from data
             data.income_updated(function(dto) { income.update(dto) });            
             data.expense_updated(function(dto) { expenses.update(dto) });
             data.balance_updated(function(dto) { balance.update(dto) });
+            data.d2dexpense_updated(function(dto) { d2d.update(dto) });
             
             // Bind from view
             income.created(function(dto) { data.save_income(dto) });
             expenses.created(function(dto) { data.save_expense(dto) });
+            d2d.created(function(dto) { data.save_d2dexpense(dto) });
             
         }
         
@@ -237,7 +283,7 @@ define(["jquery", "./client.ui.balance", "./client.ui.expenses", "./client.ui.in
     
     return {
         init: function(selector, data) {
-            var cli = new Client(selector, balance, expenses, income);
+            var cli = new Client(selector, balance, expenses, income, d2d);
             cli.init(data);
         }
         

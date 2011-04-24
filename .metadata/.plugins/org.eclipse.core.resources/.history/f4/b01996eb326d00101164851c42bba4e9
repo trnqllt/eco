@@ -1,0 +1,123 @@
+
+.client-container {
+    width: 80em;
+    margin: 0 auto;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.client-slide-container {
+    padding: 1em 1em 0;
+    border: solid black;
+    border-width: 1px 0;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+.client-slide-head {
+    
+}
+.client-slider {
+    position: relative;
+    width: 200em;
+    overflow: hidden;
+}
+
+.client-head {
+}
+
+.client-foot {
+}
+
+.client-account {
+	width: 30em;
+	margin: 0 auto;
+	background-color: #eee;
+    border-radius: 1em;
+    border: 4px double black;
+}
+
+
+.month {
+    background-color: #eee;
+    border-radius: 1em;
+    border: 4px double black;
+    padding: 1em;
+    margin: 1em;
+    float:left;
+    box-shadow: 3px 3px 3px #444;
+}
+
+.month.active {
+    background-color: white;
+}
+
+.month > div {
+    width: 35em;
+    margin: 1em 0;
+    border: solid black;
+    border-width: 1px 2px 2px 1px;
+    box-shadow: 1px 1px 5px #444;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.month > h2 {
+
+}
+
+.month > div > table {
+    padding: 0.3em;
+    width: 100%;    
+}
+
+
+
+.month > div > table > caption {
+    font-style: italic;
+    font-size: 1.2em;
+    border: solid black;
+    border-width: 0 0 1px;
+    box-shadow: 0 1px 1px #444;
+    text-shadow: 1px 1px 1px white;
+    padding: 0.3em 0;
+    background-color: #ccc;
+}
+
+.month > div > table th, .month > div table td {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.month > div > table td > input {
+    width: 100%;
+}
+
+.month > div .negative {
+    color: red;
+}
+
+
+/*** Balance **/
+.month > div.client-balance-container table tr th
+    ,.month > div.client-balance-container table tr td {
+    text-align: right;
+}
+
+.month > div.client-balance-container table td:first-child
+    , .month > div.client-balance-container table th:first-child {
+    width: 5em;
+    border: solid black;
+    border-width: 0 1px 0 0;
+}
+
+.month > div.client-balance-container table tr:first-child th {
+    border: solid black;
+    border-width: 0 0 1px;
+}
+
+.month > div.client-balance-container table tr.client-balance-row-balance {
+    font-size: 1.2em;
+}
+
+/*** End balance ***/
+
